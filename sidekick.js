@@ -117,40 +117,33 @@
   }
 
   // ============================================================================
-  // CLAUDE API
+  // N8N BACKEND API
   // ============================================================================
 
-  async function callClaudeAPI(systemPrompt, userPrompt) {
-    const apiKey = ensureAPIKey();
-    if (!apiKey) {
-      throw new Error('Kein API-Key verfügbar');
-    }
+  const N8N_API = {
+    endpoint: 'https://n8n.julianreich.ch/webhook/somedia-sidekick'
+  };
 
-    const response = await fetch(CLAUDE_API.endpoint, {
+  async function callN8NAPI(type, content, context = {}) {
+    const response = await fetch(N8N_API.endpoint, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': CLAUDE_API.version
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: CLAUDE_API.model,
-        max_tokens: CLAUDE_API.maxTokens,
-        system: systemPrompt,
-        messages: [{
-          role: 'user',
-          content: userPrompt
-        }]
+        type: type,
+        content: content,
+        context: context
       })
     });
 
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error?.message || 'API-Fehler');
+      const error = await response.text();
+      throw new Error(`API-Fehler: ${error}`);
     }
 
     const data = await response.json();
-    return data.content[0].text;
+    return data.result;
   }
 
   // ============================================================================
@@ -159,24 +152,12 @@
 
   async function generateTitles() {
     const content = getFullArticleText();
+    const extractedContent = extractContent();
 
-    const systemPrompt = `Du bist ein erfahrener Redakteur bei Somedia (Südostschweiz).
-Erstelle prägnante, informative Titel nach Somedia-Sprachrichtlinien.
-
-REGELN:
-- Geschlechtergerecht (neutrale Begriffe oder Doppelformen, KEINE *, :, /)
-- 40-70 Zeichen optimal
-- Hauptaussage erfassen
-- Aktive Verben
-- Abkürzungen: 3 Buchstaben groß (UNO), >3 nur erster groß wenn aussprechbar (Fifa)`;
-
-    const userPrompt = `Erstelle 5 Titelvorschläge für diesen Artikel.
-
-${content}
-
-FORMAT: Nur die 5 Titel, nummeriert (1. bis 5.), keine Erklärungen.`;
-
-    return await callClaudeAPI(systemPrompt, userPrompt);
+    return await callN8NAPI('titles', content, {
+      title: extractedContent.title,
+      lead: extractedContent.lead
+    });
   }
 
   async function generateAltText() {
@@ -185,81 +166,32 @@ FORMAT: Nur die 5 Titel, nummeriert (1. bis 5.), keine Erklärungen.`;
       return 'Keine Bilder gefunden im Artikel.';
     }
 
-    const context = `Artikel-Titel: ${content.title}
-Artikel-Lead: ${content.lead}`;
+    const imageInfo = `Anzahl Bilder: ${content.images.length}`;
 
-    const systemPrompt = `Du bist Experte für barrierefreie Bildbeschreibungen (ALT-Texte).
-
-REGELN:
-- Maximal 125 Zeichen
-- Sachlich, informativ
-- Keine Füllwörter ("Bild von...", "Foto zeigt...")
-- Direkt beschreiben`;
-
-    const userPrompt = `Erstelle ALT-Texte für die Bilder in diesem Artikel.
-
-${context}
-
-Anzahl Bilder: ${content.images.length}
-
-FORMAT:
-Bild 1: [ALT-Text, max 125 Zeichen]
-Bild 2: [ALT-Text, max 125 Zeichen]
-...`;
-
-    return await callClaudeAPI(systemPrompt, userPrompt);
+    return await callN8NAPI('alttext', imageInfo, {
+      title: content.title,
+      lead: content.lead,
+      articleSnippet: content.body ? content.body.substring(0, 500) : ''
+    });
   }
 
   async function checkStyleGuide() {
     const content = getFullArticleText();
+    const extractedContent = extractContent();
 
-    const systemPrompt = `Du bist Korrektor bei Somedia und prüfst Texte auf Einhaltung der Sprachrichtlinien.
-
-SOMEDIA-REGELN:
-1. GESCHLECHTERGERECHT: Neutrale Begriffe (Mitarbeitende) oder Doppelformen (Bürgerinnen und Bürger)
-   NICHT: *, :, /, -Innen
-2. ABKÜRZUNGEN: etc., z. Bsp, usw. NICHT im Lauftext
-3. ZAHLEN: Bis 12 ausgeschrieben (drei, zwölf), ab 13 Ziffern (14, 125)
-4. WOCHENTAGE: Statt "gestern", "heute", "morgen" → konkreter Wochentag
-5. NAMEN: Zeitungen angeführt («NZZ»), Online kleingeschrieben («blick.ch»)
-
-Prüfe auf Verstöße und gib konkrete Verbesserungen.`;
-
-    const userPrompt = `Prüfe diesen Text auf Verstöße gegen Somedia-Sprachrichtlinien.
-
-${content}
-
-FORMAT:
-1. [REGEL] - Problem: "..." → Vorschlag: "..."
-2. [REGEL] - Problem: "..." → Vorschlag: "..."
-
-Falls OK: "✓ Text entspricht den Richtlinien."`;
-
-    return await callClaudeAPI(systemPrompt, userPrompt);
+    return await callN8NAPI('check', content, {
+      title: extractedContent.title,
+      lead: extractedContent.lead
+    });
   }
 
   async function generateLead() {
     const content = extractContent();
     const articleText = content.body || 'Kein Inhalt vorhanden';
 
-    const systemPrompt = `Du bist Redakteur bei Somedia und erstellst prägnante Leads (Vorspänne).
-
-LEAD-REGELN:
-- Maximal 280 Zeichen
-- W-Fragen beantworten (Wer, Was, Wann, Wo)
-- Geschlechtergerecht
-- Ergänzt Titel, wiederholt ihn nicht`;
-
-    const userPrompt = `Erstelle einen Lead für diesen Artikel.
-
-Titel: ${content.title}
-
-Artikel:
-${articleText}
-
-FORMAT: Nur der Lead, maximal 280 Zeichen, keine Anführungszeichen.`;
-
-    return await callClaudeAPI(systemPrompt, userPrompt);
+    return await callN8NAPI('lead', articleText, {
+      title: content.title
+    });
   }
 
   // ============================================================================
@@ -287,7 +219,7 @@ FORMAT: Nur der Lead, maximal 280 Zeichen, keine Anführungszeichen.`;
         <div class="sidekick-result" id="sidekick-result"></div>
       </div>
       <div class="sidekick-footer">
-        <button class="sidekick-btn-secondary" onclick="localStorage.removeItem('somedia_sidekick_api_key'); alert('API-Key gelöscht');">🔑 API-Key ändern</button>
+        <small style="color: #666; text-align: center; padding: 8px;">Powered by n8n + Claude</small>
       </div>
     `;
 
@@ -476,10 +408,6 @@ FORMAT: Nur der Lead, maximal 280 Zeichen, keine Anführungszeichen.`;
       }
       return;
     }
-
-    // API-Key sicherstellen
-    const apiKey = ensureAPIKey();
-    if (!apiKey) return;
 
     // Sidebar erstellen
     createSidebar();
