@@ -23,9 +23,10 @@
   };
 
   const SELECTORS = {
-    title: 'h1[contenteditable="true"]',
-    lead: '[data-placeholder="Lead"]',
-    content: '.ProseMirror',
+    // Gutenberg + Fallback Selektoren
+    title: '.editor-post-title__input, .wp-block-post-title, h1[contenteditable="true"]',
+    lead: '[data-placeholder="Lead"], .editor-post-excerpt__textarea',
+    content: '.block-editor-block-list__layout, .editor-styles-wrapper, .block-editor-writing-flow, .ProseMirror',
     images: 'img'
   };
 
