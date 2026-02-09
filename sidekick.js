@@ -219,7 +219,7 @@
         <div class="sidekick-result" id="sidekick-result"></div>
       </div>
       <div class="sidekick-footer">
-        <small style="color: #666; text-align: center; padding: 8px;">Powered by n8n + Claude</small>
+        <small style="color: #666; text-align: center; padding: 8px;">Powered by AI</small>
       </div>
     `;
 
@@ -233,9 +233,9 @@
         width: 380px;
         max-height: 90vh;
         background: white;
-        border: 2px solid #2563eb;
-        border-radius: 12px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        border: 1px solid #000;
+        border-radius: 2px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         z-index: 999999;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         overflow: hidden;
@@ -243,7 +243,7 @@
         flex-direction: column;
       }
       .sidekick-header {
-        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        background: #000;
         color: white;
         padding: 16px;
         display: flex;
@@ -256,18 +256,18 @@
         font-weight: 600;
       }
       .sidekick-close {
-        background: rgba(255,255,255,0.2);
+        background: transparent;
         border: none;
         color: white;
         font-size: 24px;
         width: 32px;
         height: 32px;
-        border-radius: 50%;
+        border-radius: 2px;
         cursor: pointer;
         transition: background 0.2s;
       }
       .sidekick-close:hover {
-        background: rgba(255,255,255,0.3);
+        background: rgba(255,255,255,0.15);
       }
       .sidekick-body {
         padding: 16px;
@@ -278,21 +278,21 @@
         width: 100%;
         padding: 12px 16px;
         margin-bottom: 8px;
-        background: #f3f4f6;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 2px;
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 400;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: all 0.15s;
         text-align: left;
       }
       .sidekick-btn:hover {
-        background: #e5e7eb;
-        border-color: #2563eb;
+        background: #f9f9f9;
+        border-color: #3b82f6;
       }
       .sidekick-btn:active {
-        transform: scale(0.98);
+        transform: scale(0.99);
       }
       .sidekick-btn:disabled {
         opacity: 0.5;
@@ -301,8 +301,9 @@
       .sidekick-result {
         margin-top: 16px;
         padding: 12px;
-        background: #f9fafb;
-        border-radius: 8px;
+        background: #fafafa;
+        border: 1px solid #eee;
+        border-radius: 2px;
         font-size: 13px;
         line-height: 1.6;
         white-space: pre-wrap;
@@ -325,22 +326,22 @@
       }
       .sidekick-footer {
         padding: 12px 16px;
-        border-top: 1px solid #e5e7eb;
-        background: #f9fafb;
+        border-top: 1px solid #eee;
+        background: white;
       }
       .sidekick-btn-secondary {
         width: 100%;
         padding: 8px;
         background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 6px;
+        border: 1px solid #ddd;
+        border-radius: 2px;
         font-size: 12px;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: all 0.15s;
       }
       .sidekick-btn-secondary:hover {
-        border-color: #2563eb;
-        color: #2563eb;
+        border-color: #3b82f6;
+        color: #3b82f6;
       }
     `;
 
