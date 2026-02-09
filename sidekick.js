@@ -195,6 +195,16 @@
     });
   }
 
+  async function generateSocialPost() {
+    const content = extractContent();
+    const articleSnippet = content.body ? content.body.substring(0, 800) : '';
+
+    return await callN8NAPI('social', articleSnippet, {
+      title: content.title,
+      lead: content.lead
+    });
+  }
+
   // ============================================================================
   // UI
   // ============================================================================
@@ -217,6 +227,7 @@
         <button class="sidekick-btn" data-action="alttext">🖼️ ALT-Texte</button>
         <button class="sidekick-btn" data-action="check">✅ Schreibregeln prüfen</button>
         <button class="sidekick-btn" data-action="lead">📝 Lead generieren</button>
+        <button class="sidekick-btn" data-action="social">📱 Social Media Post</button>
         <div class="sidekick-result" id="sidekick-result"></div>
       </div>
       <div class="sidekick-footer">
@@ -381,6 +392,9 @@
           break;
         case 'lead':
           result = await generateLead();
+          break;
+        case 'social':
+          result = await generateSocialPost();
           break;
       }
 
