@@ -6,7 +6,7 @@ AI-Assistent für Somedia-Redaktionen. Läuft direkt im Purple Hub CMS als Bookm
 
 | Funktion | Was es tut |
 |---|---|
-| Titel | 5 Vorschläge, je 5-8 Worte, pragnant |
+| Titel | 5 Vorschläge, je 5-8 Worte, prägnant |
 | Lead | 3 Varianten, je 3 Sätze, max 12 Worte pro Satz, catchy |
 | Machs kurz | Selektierten Text kurzen, auf den Punkt kommen |
 | Synonym | 5 Synonyme fur ein selektiertes Wort |
