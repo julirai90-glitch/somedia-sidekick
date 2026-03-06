@@ -1,13 +1,13 @@
 # Somedia Sidekick
 
-AI-Assistent fur Somedia-Redaktionen. Lauft direkt im Purple Hub CMS als Bookmarklet.
+AI-Assistent für Somedia-Redaktionen. Läuft direkt im Purple Hub CMS als Bookmarklet.
 
 ## Funktionen
 
 | Funktion | Was es tut |
 |---|---|
-| Titel | 5 Vorschlage, je 5-8 Worte, pragnant |
-| Lead | 3 Varianten, je 3 Satze, max 12 Worte pro Satz, catchy |
+| Titel | 5 Vorschläge, je 5-8 Worte, pragnant |
+| Lead | 3 Varianten, je 3 Sätze, max 12 Worte pro Satz, catchy |
 | Machs kurz | Selektierten Text kurzen, auf den Punkt kommen |
 | Synonym | 5 Synonyme fur ein selektiertes Wort |
 | Social Posts | Story-Kacheln fur Instagram und Facebook (4-6 Kacheln, Dramaturgie) |
@@ -23,13 +23,13 @@ AI-Assistent fur Somedia-Redaktionen. Lauft direkt im Purple Hub CMS als Bookmar
 
 ```
 Bookmarklet (Browser)
-    POST zu https://n8n.julianreich.ch/webhook/somedia-sidekick
+    POST zu n8n.../somedia-sidekick
 n8n-Workflow (Server)
     AI Agent (OpenAI gpt-4.1-mini) + Somedia-Sprachrichtlinien
 Response zuruck → Anzeige im Sidebar
 ```
 
-Kein API-Key im Browser. Alles lauft uber den n8n-Server.
+Kein API-Key im Browser. Alles läuft uber den n8n-Server.
 
 ## Machs kurz / Synonym
 
@@ -45,5 +45,4 @@ Text im CMS-Editor markieren, dann Button klicken. Der Sidekick liest die Selekt
 ## Links
 
 - Setup: https://julirai90-glitch.github.io/somedia-sidekick/
-- n8n-Workflow: https://n8n.julianreich.ch/workflow/ZfqjZj-hIiSYr_egrKOxg
 - GitHub: https://github.com/julirai90-glitch/somedia-sidekick
