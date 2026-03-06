@@ -112,7 +112,6 @@
 
   async function getSynonym() {
     const selected = getSelectedText();
-    // Nur erstes Wort verwenden wenn mehrere selektiert
     const word = (selected.split(/\s+/)[0]) || prompt('Wort für Synonyme eingeben:');
     if (!word) return null;
     return await callN8NAPI('synonym', word, {});
@@ -127,6 +126,44 @@
   }
 
   // ============================================================================
+  // DRAG & DROP
+  // ============================================================================
+
+  function makeDraggable(sidebar) {
+    const header = sidebar.querySelector('.sidekick-header');
+    let dragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    header.addEventListener('mousedown', (e) => {
+      if (e.target.classList.contains('sidekick-close')) return;
+      dragging = true;
+      const rect = sidebar.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      // right auf auto stellen, damit left/top nicht in Konflikt geraten
+      sidebar.style.right = 'auto';
+      sidebar.style.left = rect.left + 'px';
+      header.classList.add('dragging');
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      const x = Math.max(0, Math.min(e.clientX - offsetX, window.innerWidth - sidebar.offsetWidth));
+      const y = Math.max(0, Math.min(e.clientY - offsetY, window.innerHeight - 60));
+      sidebar.style.left = x + 'px';
+      sidebar.style.top = y + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging = false;
+      header.classList.remove('dragging');
+    });
+  }
+
+  // ============================================================================
   // ERGEBNIS-RENDERING
   // ============================================================================
 
@@ -134,7 +171,6 @@
     resultDiv.innerHTML = '';
 
     if (action === 'social') {
-      // Kacheln optisch trennen
       const kacheln = text.split(/KACHEL\s+\d+:/i).filter(k => k.trim());
       if (kacheln.length > 1) {
         kacheln.forEach((kachel, i) => {
@@ -165,7 +201,6 @@
       resultDiv.appendChild(p);
     }
 
-    // Copy-Button
     const copyBtn = document.createElement('button');
     copyBtn.className = 'sidekick-copy-btn';
     copyBtn.textContent = 'Kopieren';
@@ -222,6 +257,7 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        user-select: none;
       }
       .sidekick-header {
         background: #000;
@@ -231,6 +267,10 @@
         justify-content: space-between;
         align-items: center;
         flex-shrink: 0;
+        cursor: grab;
+      }
+      .sidekick-header.dragging {
+        cursor: grabbing;
       }
       .sidekick-title {
         font-size: 15px;
@@ -258,6 +298,7 @@
         padding: 12px;
         overflow-y: auto;
         flex: 1;
+        user-select: text;
       }
       .sidekick-btn {
         width: 100%;
@@ -340,6 +381,8 @@
     sidebar.querySelectorAll('.sidekick-btn[data-action]').forEach(btn => {
       btn.addEventListener('click', handleAction);
     });
+
+    makeDraggable(sidebar);
   }
 
   async function handleAction(e) {
