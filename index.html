@@ -70,21 +70,33 @@
       font-size: 14px;
     }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1px;
-      background: #e8e8e8;
-      border: 1px solid #e8e8e8;
-      margin-top: 4px;
+    .features-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
     }
 
-    .feature {
-      padding: 16px;
-      background: white;
-      font-size: 13px;
-      font-weight: 500;
+    .features-table tr {
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .features-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .feature-name {
+      padding: 12px 16px 12px 0;
+      font-weight: 600;
       color: #111;
+      white-space: nowrap;
+      vertical-align: top;
+      width: 110px;
+    }
+
+    .feature-desc {
+      padding: 12px 0;
+      color: #444;
+      line-height: 1.5;
     }
 
     .steps {
@@ -119,40 +131,6 @@
       font-weight: 600;
       margin-bottom: 8px;
       color: #111;
-    }
-
-    .input-group {
-      margin: 16px 0;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #888;
-      margin-bottom: 6px;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 10px 12px;
-      border: 1px solid #ccc;
-      font-size: 13px;
-      background: white;
-      color: #111;
-    }
-
-    .input-group input:focus {
-      outline: none;
-      border-color: #000;
-    }
-
-    .input-hint {
-      font-size: 12px;
-      color: #999;
-      margin-top: 4px;
     }
 
     .bookmarklet-container {
@@ -200,32 +178,13 @@
       background: #222;
     }
 
-    .btn-secondary {
-      background: #fff;
-      color: #111;
-      border: 1px solid #ccc;
-    }
-
-    .btn-secondary:hover {
-      border-color: #000;
-    }
-
-    .alert {
-      padding: 12px 16px;
-      font-size: 13px;
-      margin: 12px 0;
-    }
-
     .alert-info {
       background: #f5f5f5;
       border-left: 3px solid #000;
       color: #333;
-    }
-
-    .alert-warning {
-      background: #fff8f0;
-      border-left: 3px solid #888;
-      color: #555;
+      padding: 12px 16px;
+      font-size: 13px;
+      margin: 12px 0;
     }
 
     .code {
@@ -236,16 +195,6 @@
       font-size: 12px;
       overflow-x: auto;
       margin: 12px 0;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    ul li {
-      font-size: 14px;
-      color: #444;
-      margin-bottom: 4px;
     }
 
     a {
@@ -279,13 +228,28 @@
 
       <div class="section">
         <h2>Funktionen</h2>
-        <div class="features">
-          <div class="feature">Titel</div>
-          <div class="feature">Lead</div>
-          <div class="feature">Machs kurz</div>
-          <div class="feature">Synonym</div>
-          <div class="feature">Social Posts</div>
-        </div>
+        <table class="features-table">
+          <tr>
+            <td class="feature-name">Titel</td>
+            <td class="feature-desc">Gibt 5 Vorschläge für einen Titel. Je 5 bis 8 Worte, prägnant, kein Clickbait.</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Lead</td>
+            <td class="feature-desc">Gibt 3 Lead-Varianten. Je genau 3 Sätze, maximal 12 Worte pro Satz, catchy.</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Machs kurz</td>
+            <td class="feature-desc">Text im Editor markieren, dann klicken. Kürzt auf das Wesentliche — gleiche Sprache, gleicher Ton.</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Synonym</td>
+            <td class="feature-desc">Wort im Editor markieren, dann klicken. Gibt 5 Synonyme zurück, passend für journalistischen Kontext.</td>
+          </tr>
+          <tr>
+            <td class="feature-name">Social Posts</td>
+            <td class="feature-desc">Erstellt 4 bis 6 Story-Kacheln für Instagram und Facebook, mit dramaturgischem Aufbau (Hook bis CTA).</td>
+          </tr>
+        </table>
       </div>
 
       <div class="section">
@@ -307,7 +271,7 @@
           <div class="step">
             <h3>Im CMS verwenden</h3>
             <p>Artikel im Purple Hub CMS offnen, Sidekick-Bookmark klicken.</p>
-            <p>Die Sidebar erscheint rechts im Browser.</p>
+            <p>Die Sidebar erscheint rechts im Browser — verschiebbar per Drag am Header.</p>
           </div>
         </div>
       </div>
@@ -325,7 +289,7 @@
 
       <div class="section">
         <h2>Problembehebung</h2>
-        <div class="alert alert-info">
+        <div class="alert-info">
           <strong>Sidekick ladt nicht?</strong><br>
           1. Browser-Console offnen (F12) und Fehler prufen<br>
           2. Sicherstellen, dass du im Purple Hub CMS bist<br>
