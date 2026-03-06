@@ -10,11 +10,11 @@ AI-Assistent für Somedia-Redaktionen. Läuft direkt im Purple Hub CMS als Bookm
 | Lead | 3 Varianten, je 3 Sätze, max 12 Worte pro Satz, catchy |
 | Machs kurz | Selektierten Text kurzen, auf den Punkt kommen |
 | Synonym | 5 Synonyme fur ein selektiertes Wort |
-| Social Posts | Story-Kacheln fur Instagram und Facebook (4-6 Kacheln, Dramaturgie) |
+| Social Posts | Story-Kacheln für Instagram und Facebook (4-6 Kacheln, Dramaturgie) |
 
 ## Installation
 
-1. Setup-Seite offnen: https://julirai90-glitch.github.io/somedia-sidekick/
+1. Setup-Seite öffnen: https://julirai90-glitch.github.io/somedia-sidekick/
 2. "Sidekick"-Button in die Lesezeichen-Leiste ziehen
 3. Artikel im Purple Hub CMS offnen
 4. Sidekick-Bookmark klicken
@@ -29,7 +29,7 @@ n8n-Workflow (Server)
 Response zuruck → Anzeige im Sidebar
 ```
 
-Kein API-Key im Browser. Alles läuft uber den n8n-Server.
+Kein API-Key im Browser. Alles läuft über den n8n-Server.
 
 ## Machs kurz / Synonym
 
