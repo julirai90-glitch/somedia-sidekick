@@ -1,325 +1,158 @@
 # Somedia Sidekick - Anleitung
 
-## Übersicht
-
-Somedia Sidekick ist ein AI-gestützter Schreibassistent, der direkt im Purple Hub CMS läuft. Er basiert auf den **Somedia-Sprachrichtlinien 2022** und nutzt die Claude API (Anthropic).
-
-## Schnellstart
-
-### 1. Claude API-Key besorgen
-
-1. Gehe zu [console.anthropic.com](https://console.anthropic.com/)
-2. Erstelle einen Account (falls noch nicht vorhanden)
-3. Navigiere zu "API Keys"
-4. Erstelle einen neuen Key
-5. Kopiere den Key (beginnt mit `sk-ant-api03-...`)
-
-### 2. Lokales Setup & Testing
-
-1. Öffne `index.html` im Browser
-2. Gib deinen API-Key ein und klicke "API-Key speichern"
-3. Öffne `test.html` für lokale Tests
-4. Klicke "Beispiel-Inhalt einfügen"
-5. Klicke "Sidekick laden"
-6. Teste alle Funktionen
-
-### 3. Bookmarklet erstellen
-
-**Option A: Für Deployment (GitHub Pages)**
-1. Pushe den Code auf GitHub
-2. Aktiviere GitHub Pages
-3. Passe die URL im Bookmarklet an (in `index.html`)
-4. Ziehe den Bookmarklet-Button in die Lesezeichen-Leiste
-
-**Option B: Lokal (nur für Entwicklung)**
-1. Erstelle ein neues Lesezeichen
-2. Als URL verwende:
-```javascript
-javascript:(function(){var s=document.createElement('script');s.src='file:///C:/Users/julir/Claude_Code_Workspace/somedia-sidekick/sidekick.js?'+Date.now();document.body.appendChild(s);})();
-```
-3. Speichere das Lesezeichen
-
-⚠️ **Hinweis**: `file://`-URLs funktionieren nicht in allen Browsern aus Sicherheitsgründen!
-
-### 4. Im CMS verwenden
-
-1. Öffne einen Artikel im Purple Hub CMS (`c02.purpleshub.com`)
-2. Klicke auf das Sidekick-Bookmark
-3. Die Sidebar erscheint rechts
-4. Wähle eine Funktion aus den 4 Buttons
+AI-Assistent fur den Purple Hub CMS-Alltag. Kein Login, kein API-Key, einfach benutzen.
 
 ---
 
-## Funktionen im Detail
+## Installation
 
-### 🎯 Titelvorschläge
+1. Gehe zu: https://julirai90-glitch.github.io/somedia-sidekick/
+2. Ziehe den "Sidekick"-Button in deine Lesezeichen-Leiste
+3. Fertig
 
-**Was es macht:**
-- Analysiert den Artikel-Inhalt
-- Generiert 5 verschiedene Titel-Varianten
-- Berücksichtigt Somedia-Sprachrichtlinien
+---
 
-**Wann verwenden:**
-- Wenn du Inspiration für einen Titel brauchst
-- Um verschiedene Perspektiven zu bekommen
-- Für A/B-Testing von Titeln
+## Verwendung
 
-**Beispiel-Output:**
+1. Artikel im Purple Hub CMS offnen
+2. Sidekick-Bookmark klicken
+3. Sidebar erscheint rechts im Browser
+4. Funktion klicken → Ergebnis erscheint darunter
+5. "Kopieren" klicken um den Text zu ubernehmen
+
+---
+
+## Funktionen
+
+### Titel
+
+Liest den ganzen Artikel und gibt 5 Titelvorschlage zuruck. Je 5 bis 8 Worte. Pragnant, kein Clickbait.
+
+Wann: Wenn du Inspiration brauchst oder verschiedene Winkel sehen willst.
+
+Beispiel-Output:
 ```
-1. Graubünden investiert 5,6 Millionen Franken in Digitalisierung
-2. Kantonsregierung lanciert Digitalisierungsprogramm
-3. 5,6 Millionen für Schulen und Unternehmen
-4. Digitalisierung: Regierung stellt umfassendes Programm vor
-5. Start-ups und Schulen profitieren von neuem Programm
-```
-
-### 🖼️ ALT-Texte generieren
-
-**Was es macht:**
-- Erstellt barrierefreie Bildbeschreibungen
-- Maximal 125 Zeichen
-- Basierend auf Artikel-Kontext
-
-**Wann verwenden:**
-- Bei jedem Bild im Artikel
-- Für Accessibility (Screenreader)
-- Um SEO zu verbessern
-
-**Beispiel-Output:**
-```
-Bild 1: Regierungsrat Mario Cavigelli präsentiert an Medienkonferenz in Chur das Digitalisierungsprogramm
-Bild 2: Schülerinnen und Schüler arbeiten an Computern in modernem Klassenzimmer
-```
-
-### ✅ Schreibregeln prüfen
-
-**Was es macht:**
-- Prüft Text auf Verstöße gegen Somedia-Richtlinien
-- Gibt konkrete Verbesserungsvorschläge
-- Markiert problematische Stellen
-
-**Wann verwenden:**
-- Vor dem Veröffentlichen
-- Bei unsicheren Formulierungen
-- Für Qualitätskontrolle
-
-**Beispiel-Output:**
-```
-1. [GENDERN] - Problem: "Lehrer und Schüler" → Vorschlag: "Lehrpersonen und Schulkinder" oder "Lehrerinnen und Lehrer sowie Schülerinnen und Schüler"
-2. [ZAHLEN] - Problem: "14 Millionen" → Korrekt (ab 13 als Ziffern)
-3. [WOCHENTAGE] - Problem: "gestern" → Vorschlag: "am Montag"
-4. [ABKÜRZUNGEN] - Problem: "usw." → Vorschlag: ausschreiben oder weglassen
-```
-
-### 📝 Lead generieren
-
-**Was es macht:**
-- Erstellt einen prägnanten Vorspann (Lead)
-- Maximal 280 Zeichen
-- Beantwortet W-Fragen (Wer, Was, Wann, Wo)
-
-**Wann verwenden:**
-- Wenn du Schwierigkeiten hast, den Lead zu formulieren
-- Um verschiedene Ansätze zu sehen
-- Als Ausgangspunkt für eigene Formulierung
-
-**Beispiel-Output:**
-```
-Die Kantonsregierung hat am Montag ein umfassendes Digitalisierungsprogramm vorgestellt. Insgesamt 5,6 Millionen Franken sollen in den kommenden drei Jahren in Bildung, Wirtschaft und Infrastruktur fliessen.
+1. Graubunden investiert in die Schul-Digitalisierung
+2. Funf Millionen fur Bildung und Wirtschaft
+3. Kantonsregierung startet Digitalisierungsprogramm
+4. Neue Fordergelder fur Start-ups im Kanton
+5. Schulen und Unternehmen profitieren von Investitionspaket
 ```
 
 ---
 
-## Somedia-Sprachrichtlinien (Kurzübersicht)
+### Lead
 
-Der Sidekick beachtet automatisch folgende Regeln:
+Gibt 3 Lead-Varianten zuruck. Je genau 3 Satze. Jeder Satz maximal 12 Worte. Catchy, macht Lust auf den Artikel.
 
-### 1. Geschlechtergerecht schreiben
-✅ **Erlaubt:**
-- Neutrale Begriffe: Mitarbeitende, Studierende, Führungskraft
-- Doppelformen: Bürgerinnen und Bürger, Politikerinnen und Politiker
+Wann: Wenn der Einstieg nicht sitzt oder du verschiedene Tonalitaten ausprobieren willst.
 
-❌ **Nicht erlaubt:**
-- Sternchen: Mitarbeiter*innen
-- Doppelpunkt: Konsument:innen
-- Schrägstrich: Mitarbeiter/Mitarbeiterin
-- Binnen-I: MitarbeiterInnen
+Beispiel-Output:
+```
+VARIANTE 1:
+Der Kanton Graubunden investiert funf Millionen Franken. Das Geld fliesst in Schulen, Start-ups und Infrastruktur. Das Programm startet im Fruhling.
 
-### 2. Abkürzungen
-- **3 Buchstaben**: Großgeschrieben (GKB, DMO, UNO)
-- **Mehr als 3**: Nur erster Buchstabe groß, wenn aussprechbar (Fifa, Unesco)
-- **Im Lauftext nicht erlaubt**: etc., z. Bsp, usw.
+VARIANTE 2:
+Funf Millionen fur die Digitalisierung - der Kanton macht Ernst. Schulkinder und Unternehmen profitieren gleichermassen. Die Regierung prasentierte das Programm am Montag.
 
-### 3. Zahlen
-- **Bis 12**: Ausgeschrieben (drei, zwölf)
-- **Ab 13**: Ziffern (14, 125)
-- **Geldbeträge**: Immer Ziffern (80 Rappen, 5000 Franken)
-
-### 4. Wochentage
-- **Statt**: "gestern", "heute", "morgen"
-- **Schreibe**: "am Montag", "am Dienstag", etc.
-
-### 5. Kupplungen (Bindestriche)
-- **Drei gleiche Vokale**: Tee-Ei, See-Elefant
-- **Unübersichtlich**: Corona-Epidemie, Mehrzweck-Küchenmaschine
-
-### 6. Namen
-- **Zeitungen**: Angeführt («Bündner Tagblatt»)
-- **Zeitungskürzel**: Nicht angeführt (NZZ, BaZ)
-- **Online**: Kleingeschrieben + angeführt («suedostschweiz.ch»)
+VARIANTE 3:
+Graubunden bekommt ein neues Digitalisierungsprogramm. Insgesamt funf Millionen Franken stehen bereit. Wer davon profitiert - und wie man sich bewirbt.
+```
 
 ---
 
-## Deployment
+### Machs kurz
 
-### GitHub Pages (Empfohlen)
+Kürzt selektierten Text. Streicht unnötige Worte, kommt auf den Punkt. Gleiche Sprache, gleicher Ton.
 
-1. **Repository erstellen**
-   ```bash
-   cd C:\Users\julir\Claude_Code_Workspace\somedia-sidekick
-   git init
-   git add .
-   git commit -m "Initial commit: Somedia Sidekick v1.0"
-   ```
+Wann: Text im CMS-Editor markieren, dann "Machs kurz" klicken. Kein Text markiert? Ein Eingabe-Prompt erscheint.
 
-2. **Auf GitHub pushen**
-   ```bash
-   # Repository auf GitHub erstellen (github.com/new)
-   git remote add origin https://github.com/DEIN-USERNAME/somedia-sidekick.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-3. **GitHub Pages aktivieren**
-   - Gehe zu Repository Settings
-   - Navigiere zu "Pages"
-   - Source: "main" branch
-   - Speichern
-
-4. **Bookmarklet-URL anpassen**
-   - Öffne `index.html`
-   - Ändere die URL im Bookmarklet:
-   ```javascript
-   https://DEIN-USERNAME.github.io/somedia-sidekick/sidekick.js
-   ```
-
-5. **Testen**
-   - Öffne `https://DEIN-USERNAME.github.io/somedia-sidekick/`
-   - Folge den Setup-Anweisungen
-
-### Alternative: Eigener Server
-
-Falls du einen eigenen Webserver hast:
-
-1. Kopiere alle Dateien auf den Server
-2. Stelle sicher, dass `sidekick.js` über HTTPS erreichbar ist
-3. Passe die URL im Bookmarklet entsprechend an
+Ideal fur: Zu lange Satze, uberlastete Absatze, schwerfällige Formulierungen.
 
 ---
 
-## Troubleshooting
+### Synonym
 
-### Sidekick lädt nicht
+Gibt 5 Synonyme fur ein Wort zuruck. Passend zum journalistischen Kontext.
 
-**Problem**: Bookmarklet reagiert nicht
+Wann: Ein Wort im CMS-Editor markieren (oder nur das erste Wort einer Selektion), dann "Synonym" klicken.
 
-**Lösung**:
-1. Öffne Browser-Console (F12)
-2. Schaue nach Fehlermeldungen
-3. Prüfe ob du im richtigen CMS bist (purpleshub.com)
-4. Stelle sicher, dass die Script-URL erreichbar ist
-
-### API-Fehler
-
-**Problem**: "API-Fehler" oder "Authentication Error"
-
-**Lösung**:
-1. Prüfe ob API-Key korrekt gespeichert ist
-2. Teste Key auf [console.anthropic.com](https://console.anthropic.com/)
-3. Stelle sicher, dass Guthaben vorhanden ist
-4. Lösche den Key und gib ihn neu ein
-
-### Content wird nicht gefunden
-
-**Problem**: "Kein Inhalt gefunden"
-
-**Lösung**:
-1. Prüfe ob Purple Hub CMS-Struktur geändert wurde
-2. Öffne Browser-Console und prüfe Selektoren
-3. Passe `SELECTORS` in `sidekick.js` an
-4. Teste mit `test.html` lokal
-
-### CORS-Fehler
-
-**Problem**: "CORS policy" Fehler in Console
-
-**Lösung**:
-- Das sollte nicht passieren (Claude API hat CORS aktiviert)
-- Falls doch: Prüfe ob ein Browser-Plugin blockiert
-- Teste in Incognito-Modus
+Beispiel fur "Investition":
+```
+1. Ausgabe
+2. Forderung
+3. Finanzierung
+4. Einsatz
+5. Mittelzuweisung
+```
 
 ---
 
-## API-Kosten
+### Social Posts
 
-### Claude API Pricing (Stand Februar 2024)
+Erstellt Story-Kacheln fur Instagram und Facebook. 4 bis 6 Kacheln. Jede Kachel maximal 3 Satze. Gute Dramaturgie: Hook → Kontext → Kernaussage → Auflosung → CTA.
 
-**Claude Sonnet 4.5:**
-- Input: $3 per 1M tokens (~750k Wörter)
-- Output: $15 per 1M tokens (~750k Wörter)
+Wann: Nach dem Schreiben des Artikels, fur Social-Media-Verbreitung.
 
-**Geschätzte Kosten pro Anfrage:**
-- Titel generieren: ~$0.01-0.02
-- Lead erstellen: ~$0.01
-- ALT-Text: ~$0.005
-- Schreibregeln-Check: ~$0.02-0.03
+Beispiel-Output:
+```
+KACHEL 1:
+Funf Millionen Franken fur Graubunden. Was passiert damit? Das musst du wissen.
 
-**Monatliche Kosten** (bei täglicher Nutzung):
-- 5 Titel-Generierungen/Tag: ~$3/Monat
-- 10 Schreibregeln-Checks/Tag: ~$9/Monat
+KACHEL 2:
+Der Kanton investiert - und zwar in Schulen und Start-ups gleichzeitig. Ein Programm, zwei Ziele.
 
-→ **Ca. $10-20/Monat** bei intensiver Nutzung
+KACHEL 3:
+Fur Schulkinder heisst das: bessere Gerate, modernere Lernumgebungen. Fur Unternehmen: Fordergelder fur digitale Projekte.
 
----
+KACHEL 4:
+Startschuss ist im Fruhling. Wer sich bewirbt, hat Chancen auf direkte Unterstutzung.
 
-## Erweiterungen
-
-### Geplante Features (Future)
-
-- [ ] **Mehrsprachigkeit**: Rätoromanisch, Italienisch
-- [ ] **Sentiment-Analyse**: Tonalität des Textes prüfen
-- [ ] **Fact-Checking**: Automatische Quellenprüfung
-- [ ] **Bild-Upload**: ALT-Text direkt vom Bild generieren
-- [ ] **Export**: Ergebnisse als Notizen speichern
-- [ ] **Shortcuts**: Keyboard-Shortcuts für schnelleren Zugriff
-
-### Backend-Integration (Optional)
-
-Falls mehrere Redakteure das Tool nutzen:
-
-1. **n8n-Workflow** auf deinem Server (91.98.76.206)
-2. **Zentrale Schreibregeln-Verwaltung**
-3. **Logging & Analytics**
-4. **Team-API-Key** (statt individuellem Key)
-
-Siehe [Plan](../plans/stateful-scribbling-fox.md) für Details.
+KACHEL 5:
+Graubunden zeigt, wie Digitalisierung geht. Mehr im Artikel - Link in Bio.
+```
 
 ---
 
-## Support & Feedback
+## Somedia-Sprachrichtlinien
 
-**Fragen?** Öffne ein Issue auf GitHub.
+Der Sidekick kennt die Regeln und wendet sie automatisch an:
 
-**Verbesserungsvorschläge?** Pull Requests sind willkommen!
+**Geschlechtergerecht:** Mitarbeitende, Studierende, Fuhrungskraft - oder Doppelformen wie "Burgerinnen und Burger". Nicht erlaubt: *, :, /, Binnen-I.
+
+**Abkurzungen:** Bis 3 Buchstaben gross (GKB, UNO). Mehr als 3: nur erster Buchstabe gross wenn aussprechbar (Fifa, Unesco). Im Lauftext kein "etc.", "usw.", "z.Bsp.".
+
+**Zahlen:** Bis 12 ausgeschrieben. Ab 13 Ziffern. Geldbetrüge immer Ziffern.
+
+**Wochentage:** Nicht "gestern/heute/morgen" - sondern "am Montag", "am Dienstag" usw.
+
+**Kupplungen:** Tee-Ei, See-Elefant (drei gleiche Vokale). Corona-Epidemie (unubersichtlich).
+
+**Namen:** Zeitungen in Guillemets («Bundner Tagblatt»). Kurzel ohne (NZZ). Online-Portale klein + Guillemets («suedostschweiz.ch»).
 
 ---
 
-## Lizenz
+## Problembehebung
 
-MIT License - Frei verwendbar für Somedia und externe Projekte.
+**Sidekick ladt nicht:**
+1. Browser-Console offnen (F12) → Fehler prufen
+2. Sicherstellen, dass du im Purple Hub CMS bist
+3. Seite neu laden, dann Bookmark erneut klicken
+
+**"Wird generiert..." erscheint, aber kein Ergebnis:**
+1. Browser-Console prufen (F12 → Console-Tab)
+2. Prufen ob n8n erreichbar ist: https://n8n.julianreich.ch
+3. Falls n8n down: Julian informieren
+
+**Content wird nicht gefunden:**
+Der Sidekick liest Titel, Lead und Inhalt aus dem DOM. Wenn das CMS seine Struktur andert, mussen die Selektoren in sidekick.js angepasst werden.
 
 ---
 
-**Version**: 1.0
-**Stand**: Februar 2026
-**Basierend auf**: Somedia-Sprachrichtlinien 2022
+## Technischer Hintergrund
+
+Der Sidekick schickt den Artikel-Text an einen n8n-Server. Dort wird ein AI Agent (OpenAI gpt-4.1-mini) mit den Somedia-Sprachrichtlinien kombiniert und gibt das Ergebnis zuruck. Kein API-Key im Browser notwendig.
+
+```
+Browser → POST → n8n (n8n.julianreich.ch) → AI Agent → Response → Sidebar
+```
